@@ -43,7 +43,7 @@ export const writeDataInDB = (newUserData: IUserData) => {
         // Save data in file
         fs.writeFileSync(databaseFilePath, JSON.stringify(newDataToInsertInDB, null, 4))
 
-        // Return true on susses
+        // Return true on success  
         return true;
 
     } catch (error: any) {

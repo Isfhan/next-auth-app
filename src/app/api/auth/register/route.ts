@@ -50,13 +50,13 @@ export const POST = async (request: NextRequest) => {
         return NextResponse.json({
             "message": "User registration complete successfully 😅"
         }, {
-            status:201
+            status: 201
         });
     }
 
     return NextResponse.json({
         "error": "something went wrong 😑"
     }, {
-        status:500
+        status: 500
     });
 }
