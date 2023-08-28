@@ -1,0 +1,28 @@
+{
+    "users": [
+        {
+            "_id": "124582136",
+            "name": "ali",
+            "email": "ali@gmail.com",
+            "password": "123456789"
+        },
+        {
+            "_id": "124582136",
+            "name": "Baber",
+            "email": "Baber@gmail.com",
+            "password": "123456789"
+        },
+        {
+            "name": "isfhan",
+            "email": "isfhan@gmail.com",
+            "password": "$2a$10$jxJ/yTchWwhdLhyZ0KWHmuq48wQCEqosY1eOybNeMuqeq1Gjwikj6",
+            "_id": "aacf2387-0165-45ad-8fbb-aa95e9a51599"
+        },
+        {
+            "name": "saba",
+            "email": "saba@gmail.com",
+            "password": "$2a$10$cU5OYbMx1ZMhhZliJiYZP.qXNlENcQBLDEsenV51ovxaK0WhHK252",
+            "_id": "577d6df2-ca0d-4f79-9c2f-0f22ae9a98de"
+        }
+    ]
+}
