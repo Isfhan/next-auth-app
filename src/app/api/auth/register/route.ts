@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 // Import custom module
 import { findDataInDB, writeDataInDB } from '@/helpers/db';
+import { RegisterUserSchema, UserRequestData } from '@/helpers/validations/user.schema';
 
 // Import module from node
 import { randomUUID } from 'crypto';
@@ -17,46 +18,60 @@ import type { IUserData, IUserRequestData } from '@/types';
 
 export const POST = async (request: NextRequest) => {
 
-    // Get data from request
-    const newUserData: IUserRequestData = await request.json();
+    try {
 
-    // Find user in db
-    const user: IUserData | undefined = findDataInDB(newUserData.email);
+        // Get data from request
 
-    // Return error response 
-    if (user) {
-        return NextResponse.json({ "error": "user already registered" }, { status: 400 });
-    }
+        // Using our custom interface
+        // const newUserData: IUserRequestData = await request.json(); 
 
-    // Create salt for password
-    const salt: string = await bcryptjs.genSalt(10);
+        // Using our zod type
+        const newUserData: UserRequestData = await request.json();
 
-    // Create hash password
-    const hashPassword: string = await bcryptjs.hash(newUserData.password, salt);
+        const data = RegisterUserSchema.parse(newUserData);
+       
+        // Find user in db
+        const user: IUserData | undefined = findDataInDB(newUserData.email);
 
-    // Create new user object
-    const newUser: IUserData = {
-        _id: randomUUID(),
-        name: newUserData.name,
-        email: newUserData.email,
-        password: hashPassword
-    }
+        // Return error response 
+        if (user) {
+            return NextResponse.json({ "error": "user already registered" }, { status: 400 });
+        }
 
-    // Write data in db
-    const response = writeDataInDB(newUser);
+        // Create salt for password
+        const salt: string = await bcryptjs.genSalt(10);
 
-    if (response) {
+        // Create hash password
+        const hashPassword: string = await bcryptjs.hash(newUserData.password, salt);
+
+        // Create new user object
+        const newUser: IUserData = {
+            _id: randomUUID(),
+            name: newUserData.name,
+            email: newUserData.email,
+            password: hashPassword
+        }
+
+        // Write data in db
+        const response = writeDataInDB(newUser);
+
+        if (response) {
+
+            return NextResponse.json({
+                "message": "User registration complete successfully 😅"
+            }, {
+                status: 201
+            });
+        }
+
+    } catch (error: any) {
 
         return NextResponse.json({
-            "message": "User registration complete successfully 😅"
+            "message": error.message,
+            "error": error
         }, {
-            status: 201
+            status: 500
         });
     }
 
-    return NextResponse.json({
-        "error": "something went wrong 😑"
-    }, {
-        status: 500
-    });
 }
