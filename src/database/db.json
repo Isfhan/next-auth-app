@@ -1,18 +1,6 @@
 {
     "users": [
         {
-            "_id": "124582136",
-            "name": "ali",
-            "email": "ali@gmail.com",
-            "password": "123456789"
-        },
-        {
-            "_id": "124582136",
-            "name": "Baber",
-            "email": "Baber@gmail.com",
-            "password": "123456789"
-        },
-        {
             "name": "isfhan",
             "email": "isfhan@gmail.com",
             "password": "$2a$10$jxJ/yTchWwhdLhyZ0KWHmuq48wQCEqosY1eOybNeMuqeq1Gjwikj6",
@@ -47,6 +35,12 @@
             "name": "John 123",
             "email": "jhon123@gmail.com",
             "password": "$2a$10$25PVBKLpL3HTLLMwiZJCHOh3yCy9HSGJ5FnVUSTpV3kB87l7oSyFu"
+        },
+        {
+            "_id": "f895c1e3-a151-459f-a855-83232aaf5651",
+            "name": "admin",
+            "email": "admin@gmail.com",
+            "password": "$2a$10$IAnreaD21lgi0Yce9XkOgub/fRAs/r72rZ2igAGXzfzrf0SBoitkC"
         }
     ]
 }
